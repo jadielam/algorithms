@@ -32,7 +32,9 @@ def bfs_connected(adj: Dict[Any, List[Hashable]], s: Any, visited: Set[Hashable]
     '''
     queue = [s]
     visited.add(s)
-    parents = {}
+    parents = {
+        s: None
+    }
     distance = {
         s: 0
     }
