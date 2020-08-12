@@ -56,7 +56,7 @@ def merge_sort(nums: list, i: int, j: int) -> list:
         b = merge_sort(nums, i + boundary, j)
         return merge(a, b)
         
-def partition(a: list, p, r) -> int:
+def randomized_partition(a: list, p, r) -> int:
     '''
     Given list `a` and indexes `p` and `r` (both inclusive), shuffles elements in ait returns index
     `q` such that all elements a[:q] are less than or equal to q and all elements a[q+1:] are greater
@@ -108,6 +108,6 @@ def quick_sort(a: list, i: int, j: int):
       - j: last index of list to sort
     '''
     if i < j:
-        q = partition(a, i, j)
+        q = randomized_partition(a, i, j)
         quick_sort(a, i, q - 1)
         quick_sort(a, q + 1, j)
