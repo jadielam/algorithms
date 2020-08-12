@@ -1,7 +1,7 @@
 from typing import Dict, List, Any, Tuple, Set, Hashable
 from collections import Enum
 
-def bfs_forest(adj: Dict[Any, List[Any]]):
+def bfs_forest(adj: Dict[Any, List[Any]]) -> List[Tuple[Any, Dict[Hashable, Hashable], Dict[Hashable, int]]]:
     '''
     Given an adjacency list of a graph that is not necessarily connected 
     ( a forest ), it computes the parent dictionaries of all the connected
@@ -31,17 +31,20 @@ def bfs_connected(adj: Dict[Any, List[Hashable]], s: Any, visited: Set[Hashable]
         - distance: Dict[Hashable, int]
     '''
     queue = [s]
+    visited.add(s)
     parents = {}
-    d = {}
-    distance[s] = 0
+    distance = {
+        s: 0
+    }
 
     while len(queue) > 0:
         node = queue.pop(0)
-        for child in adj[node]:
-            if not child in visited:
-                queue.append(child)
-                visited.add(child)
-                parent[child] = node
-                distance[child] += d[node]
+        if node in adj:
+            for child in adj[node]:
+                if not child in visited:
+                    queue.append(child)
+                    visited.add(child)
+                    parents[child] = node
+                    distance[child] = distance[node] + 1
     
     return parents, distance
