@@ -114,7 +114,7 @@ def quick_sort(a: list, i: int, j: int):
  
 def select_k(a, p, r, i):
     '''
-    Returns the ith largest element in array a[p...r]
+    Returns the ith smallest element in array a[p...r]
     It finds the element in average linear time.
     Indexes `p` and `r` are inclusive.
     '''
