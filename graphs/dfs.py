@@ -56,3 +56,13 @@ def dfs_forest(adj : Dict[Hashable, List[Hashable]]) :
     
     return parent, discovery_time, finish_time
 
+def topological_sort(adj: Dict[Hashable, List[Hashable]]) -> List[Tuple[Hashable, int]]:
+    '''
+    Returns a topological sort of the nodes in the directed graph.
+
+    There wouldn't be any need to sort items by finish time if we would capture that list
+    as the finish time of the nodes are created by the dfs algorithm.
+    '''
+    _, _, finish_time = dfs_forest(adj)
+    return sorted(finish_time.items(), key = lambda x: x[1])
+
