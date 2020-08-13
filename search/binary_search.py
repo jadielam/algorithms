@@ -17,6 +17,6 @@ def binary_search(a: list, i: int, j: int, n: int):
         elif n > a[m]:
             i = m + 1
         else:
-            j = m - 1
+            j = m
     return None
     
