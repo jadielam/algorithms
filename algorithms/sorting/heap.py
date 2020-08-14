@@ -66,7 +66,11 @@ def build_max_heap(A: list) -> None:
     for i in range(last_non_leaf, -1, -1):
         max_heapify(A, i)
 
-def heapsort(A: list):
+def heapsort(to_sort: list):
+    '''
+
+    '''
+    A = list(to_sort)
     sorted_A = []
     build_max_heap(A)
     for i in range(len(A)):
