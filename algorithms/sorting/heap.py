@@ -19,7 +19,7 @@ def right(cidx: int):
 def first_leaf(length: int):
     return length // 2
 
-def max_heapify(A: list, i: int):
+def max_heapify(A: list, i: int, heap_length: int):
     '''
     When ran, it assumes that the `trees` rooted at
     A[left(i)] and A[right(i)] are keep the heap 
@@ -29,12 +29,11 @@ def max_heapify(A: list, i: int):
     while True:
         li = left(ci)
         ri = right(ci)
-        new_ci = ci
-        if li < len(A) and A[li] > A[ci]:
+        if li < heap_length and A[li] > A[ci]:
             largest = li
         else:
             largest = ci
-        if ri < len(A) and A[ri] > A[largest]:
+        if ri < heap_length and A[ri] > A[largest]:
             largest = ri
         if largest != ci:
             temp = A[ci]
@@ -44,16 +43,16 @@ def max_heapify(A: list, i: int):
         else:
             break
             
-def is_max_heap(A: list) -> bool:
+def is_max_heap(A: list, heap_length: int) -> bool:
     '''
     Checks if array A keeps the heap property
     '''
     for i, a in enumerate(A):
         li = left(i)
         ri = right(i)
-        if li < len(A) and A[li] > A[i]:
+        if li < heap_length and A[li] > A[i]:
             return False
-        if ri < len(A) and A[ri] > A[i]:
+        if ri < heap_length and A[ri] > A[i]:
             return False
     
     return True
@@ -64,18 +63,17 @@ def build_max_heap(A: list) -> None:
     '''
     last_non_leaf = first_leaf(len(A)) - 1
     for i in range(last_non_leaf, -1, -1):
-        max_heapify(A, i)
+        max_heapify(A, i, len(A))
 
 def heapsort(to_sort: list):
     '''
-
+    Sorts in place
     '''
-    A = list(to_sort)
-    sorted_A = []
     build_max_heap(A)
+    heap_length = len(A)
     for i in range(len(A)):
-        sorted_A.insert(0, A[0])
-        A[0] = A[len(A) - 1]
-        A.pop()
-        max_heapify(A, 0)
-    return sorted_A
+        temp = A[heap_length - 1]
+        A[heap_length - 1] = A[0]
+        A[0] = temp
+        heap_length -= 1
+        max_heapify(A, 0, heap_length)
