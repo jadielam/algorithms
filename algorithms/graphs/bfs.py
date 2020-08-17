@@ -1,5 +1,4 @@
 from typing import Dict, List, Any, Tuple, Set, Hashable
-from collections import Enum
 
 def bfs_forest(adj: Dict[Any, List[Any]]) -> List[Tuple[Any, Dict[Hashable, Hashable], Dict[Hashable, int]]]:
     '''
