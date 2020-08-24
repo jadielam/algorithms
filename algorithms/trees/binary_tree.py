@@ -1,4 +1,4 @@
-from typing import Iterator, Hashable
+from typing import Iterator, Hashable, List
 
 class BinaryNode:
     def __init__(self, value, data = None):
@@ -29,12 +29,29 @@ def tree_search_recursive(root: BinaryNode, key: Hashable) -> BinaryNode:
         return tree_search(root.right, key)
 
 def tree_search(root: BinaryNode, key: Hashable) -> BinaryNode:
+    '''
+    Returns the node has the given key. If no node is found with that key,
+    returns None
+    '''
     while root is not None and key != root.value:
         if key < root.value:
             root = root.left
         else:
             root = root.right
     return root
+
+def tree_search_notnone(root: BinaryNode, key: Hashable) -> BinaryNode:
+    '''
+    Returns the node that has the given key. If no node is found with that key,
+    returns the last valid node that the search visited.
+    '''
+    while root is not None and key != root.value:
+        y = root
+        if key < root.value:
+            root = root.left
+        else:
+            root = root.right
+    return root if root is not None else y
 
 def tree_minimum(root: BinaryNode) -> BinaryNode:
     '''
@@ -67,6 +84,90 @@ def tree_successor(x: BinaryNode) -> BinaryNode:
         x = y
         y = y.parent
     return y 
+
+def tree_predecessor(x: BinaryNode) -> BinaryNode:
+    '''
+    x cannot be None
+    '''
+    #1. If node has left node, return maximum value of tree rooted in right node
+    if x.left is not None:
+        return tree_maximum(x.left)
+    
+    #2. Else return lowest ancestor of x that has a right child who is also an ancestor of x
+    y = x.parent
+    while y is not None and x is y.left:
+        x = y
+        y = y.parent
+    return y
+
+def tree_closest(root: BinaryNode, key: int) -> BinaryNode:
+    '''
+    Returns node in tree with value closest to a
+    '''
+    y = tree_search_notnone(root, key)
+    if y.value == key:
+        return y
+    p = tree_predecessor(y)
+    s = tree_successor(y)
+    to_compare = [a for a in [p, s] if a is not None]
+    min_distance = abs(y.value - key) 
+    min_node = y
+    for node in to_compare:
+        if abs(node.value - key) < min_distance:
+            min_distance = abs(nodevalue - key)
+            min_node = node
+    return min_node
+
+def lowest_common_ancestor(x: BinaryNode, y: BinaryNode) -> BinaryNode:
+    '''
+    Returns lowerst common ancestor node. Assumes x and y are not None
+    '''
+    seen = set()
+    while x is not None:
+        seen.add(x.value)
+        x = x.parent
+    
+    while y is not None:
+        if y.value in seen:
+            return y
+        y = y.parent
+    
+    
+def range_query(root: BinaryNode, low: int, high: int) -> List[int]:
+    '''
+    Returns as a list the values of all the nodes that fall within the
+    [low, high] range
+    '''
+    #1. Find node A that is upper predecessor to low
+    py = tree_search_notnone(root, low)
+    p = tree_predecessor(py)
+    p = p if p is not None else py
+    
+    #2. Find node B that is lower successor to high
+    sy = tree_search_notnone(root, high)
+    s = tree_successor(sy)
+    s = s if s is not None else sy
+    
+    #3. Do in order traversal of graph from A to B, adding to list
+    # all entries within range.  Do inorder traversal using stack.
+    common_ancestor = lowest_common_ancestor(p, s)
+    stack = [common_ancestor]
+    left_added = set()
+    to_return = []
+    while stack:
+        node = stack[-1]
+        if not node.value in left_added:
+            if node.left is not None and node.value >= low:
+                stack.append(node.left)
+            left_added.add(node.value)
+        else:
+            if node.value >= low and node.value <= high:
+                to_return.append(node.value)
+            stack.pop()
+            if node.right is not None and node.value <= high:
+                stack.append(node.right)
+    
+    return to_return
 
 def tree_insert(root: BinaryNode, z: BinaryNode) -> BinaryNode:
     '''
@@ -138,8 +239,3 @@ def tree_delete(root: BinaryNode, z: BinaryNode) -> BinaryNode:
         z.data = y.data
     
     return y, new_root
-
-
-
-
-    
