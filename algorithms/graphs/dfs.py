@@ -114,7 +114,9 @@ def topological_sort(adj: Dict[Hashable, List[Hashable]]) -> List[Tuple[Hashable
 
     There wouldn't be any need to sort items by finish time if we would capture that list
     as the finish time of the nodes are created by the dfs algorithm.
+
+    Nodes with higher finish time come first in the returned list
     '''
     _, _, finish_time = dfs_forest(adj)
-    return sorted(finish_time.items(), key = lambda x: x[1])
+    return sorted(finish_time.items(), key = lambda x: x[1], reverse = True)
 

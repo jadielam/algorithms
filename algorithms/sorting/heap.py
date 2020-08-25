@@ -42,7 +42,39 @@ def max_heapify(A: list, i: int, heap_length: int):
             ci = largest
         else:
             break
-            
+
+def extract_max(A: list):
+    '''
+    - Arguments:
+        - A: list that is a queue
+    
+    - Returns:
+        - max_elem
+    
+    - Raises:
+        - IndexError if heap size is less than 1
+    '''
+    max_elem = A[0]
+    A[0] = A[len(A) - 1]
+    del A[len(A) - 1]
+    max_heapify(A, 0, len(A))
+    return max_elem
+
+def heap_increase_key(A: list, i: int, key):
+    if key < A[i]:
+        raise ValueError('key most be larger than previous key')
+    A[i] = key
+    while i > 0 and A[parent(i)] < A[i]:
+        parent_i = parent(i)
+        temp = A[i]
+        A[i] = A[parent_i]
+        A[parent_i] = temp
+        i = parent_i
+
+def heap_insert(A: list, key):
+    A.append(float('-inf'))
+    heap_increase_key(A, len(A) - 1, key)
+
 def is_max_heap(A: list, heap_length: int) -> bool:
     '''
     Checks if array A keeps the heap property

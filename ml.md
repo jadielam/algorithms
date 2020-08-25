@@ -9,3 +9,5 @@
 6. Techniques for solving overfitting.
 7. Probability rebalancing
 8. Feature modification and scaling and preprocessing
+9. Recommendation systems
+10. 
