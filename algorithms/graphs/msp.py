@@ -54,13 +54,14 @@ def prim(adj: Dict[Hashable, List[Hashable]],
     key[r] = 0
 
     #2. Building heap and helper datastructures
-    heap_entries = [heap.PrioritizedItem(-key[u], idx, u) for idx, u in enumerate(d.keys())]
-    entries_map = {pitem.item : pitem for pitem in heap_entries}
-    Q = heap.build_max_heap(heap_entries)
+    Q = [heap.PrioritizedItem(-key[u], idx, u) for idx, u in enumerate(key.keys())]
+    entries_map = {pitem.item : pitem for pitem in Q}
+    heap.build_max_heap(Q)
     
     #3. Run the algorithm
     while Q:
-        u = heap.extract_max(Q)
+        heap_item = heap.extract_max(Q)
+        u = heap_item.item
         not_Q.add(u)
         for v in adj[u]:
             if v not in not_Q and w[(u, v)] < key[v]:
@@ -71,8 +72,5 @@ def prim(adj: Dict[Hashable, List[Hashable]],
     
     #4. Compile the list of edges that belong to tree. Note that
     # at this point not_Q contains all the vertices of the graph.
-    A = [(v, parent[v]) for v in (not_Q - set(r))]
+    A = [(v, parent[v]) for v in (not_Q - set([r]))]
     return A
-
-    
-
