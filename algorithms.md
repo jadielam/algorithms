@@ -5,11 +5,13 @@ Quick implementation of algorithms in Python
 1. (Done) Disjoint sets
 2. (Done) multidimensional trees (nearest neighbors search). Very important
 in the case of Twitter.
+3. Heap review of change key and extract max
 3. shortest path
 4. minimum spanning tree
 5. string search and match
-10. matrix operations
 6. b-trees
+( Stop here )
+10. matrix operations
 7. radix sort
 8. merkle trees
 9. network flow

@@ -1,4 +1,5 @@
 from typing import Hashable, Tuple, Dict, List
+
 from dfs import topological_sort
 import algorithms.sorting.heap as heap
 
@@ -109,6 +110,19 @@ def dijkstra(adj: Dict[Hashable, List[Hashable]],
     '''
     d, parent = initialize_single_source(adj, s)
     S = set()
+    heap_entries = [heap.PrioritizedItem(-d[node], node) for node in d.keys()]
+    entries_map = {pitem.item : pitem for pitem in heap_entries}
+    Q = heap.build_max_heap(heap_entries)
+    while Q:
+        max_entry = heap.extract_max(Q)
+        u = max_entry.item
+        S.add(u)
+        for v in adj[u]:
+            # Relaxing d of v, including heap change
+            if d[v] > d[u] + w[(u, v)]:
+                d[v] = d[u] + w([u, v])
+                parent[v] = u
+                v_heap_position = entries_map[v].heap_position
+                heap.heap_increase_key(Q, v_heap_position, d[v])
     
-    
-    
+    return parent
