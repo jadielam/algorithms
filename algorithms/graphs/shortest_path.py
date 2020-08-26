@@ -16,7 +16,7 @@ def relax(u: Hashable, v: Hashable,
         of what node.
     '''
     if d[v] > d[u] + w[(u, v)]:
-        d[v] = d[u] + w([u, v])
+        d[v] = d[u] + w[(u, v)]
         parent[v] = u
 
 def initialize_single_source(adj: Dict[Hashable, List[Hashable]], s: Hashable):
@@ -31,6 +31,7 @@ def initialize_single_source(adj: Dict[Hashable, List[Hashable]], s: Hashable):
     for v in adj.keys():
         d[v] = float('inf')
         p[v] = None
+    d[s] = 0
     return d, p
 
 def bellman_ford(adj: Dict[Hashable, List[Hashable]], 
@@ -44,7 +45,7 @@ def bellman_ford(adj: Dict[Hashable, List[Hashable]],
     - Arguments:
         - adj: Graph represented as adjacency list. Assumes that nodes with no
         neighbors are present in the adjacency list.
-         - w: Dictionary that contains weights of all edges in graph
+        - w: Dictionary that contains weights of all edges in graph
         - s: source node
     
     - Returns:
@@ -110,19 +111,20 @@ def dijkstra(adj: Dict[Hashable, List[Hashable]],
     '''
     d, parent = initialize_single_source(adj, s)
     S = set()
-    heap_entries = [heap.PrioritizedItem(-d[node], node) for node in d.keys()]
-    entries_map = {pitem.item : pitem for pitem in heap_entries}
-    Q = heap.build_max_heap(heap_entries)
+    Q = [heap.PrioritizedItem(-d[node], idx, node) for idx, node in enumerate(d.keys())]
+    entries_map = {pitem.item : pitem for pitem in Q}
+    heap.build_max_heap(Q)
     while Q:
         max_entry = heap.extract_max(Q)
+        print(max_entry.item)
         u = max_entry.item
         S.add(u)
         for v in adj[u]:
             # Relaxing d of v, including heap change
             if d[v] > d[u] + w[(u, v)]:
-                d[v] = d[u] + w([u, v])
+                d[v] = d[u] + w[(u, v)]
                 parent[v] = u
                 v_heap_position = entries_map[v].heap_position
-                heap.heap_increase_key(Q, v_heap_position, d[v])
+                heap.heap_increase_key(Q, v_heap_position, -d[v])
     
     return parent
