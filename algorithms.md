@@ -7,7 +7,7 @@ Quick implementation of algorithms in Python
 in the case of Twitter.
 3. (Done) Heap review of change key and extract max
 3. (Done) shortest path
-4. minimum spanning tree
+4. (Done) minimum spanning tree
 5. string search and match
 6. b-trees
 ( Stop here )
