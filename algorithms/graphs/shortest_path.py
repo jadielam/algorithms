@@ -116,7 +116,6 @@ def dijkstra(adj: Dict[Hashable, List[Hashable]],
     heap.build_max_heap(Q)
     while Q:
         max_entry = heap.extract_max(Q)
-        print(max_entry.item)
         u = max_entry.item
         S.add(u)
         for v in adj[u]:
