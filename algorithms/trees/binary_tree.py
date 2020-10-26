@@ -114,7 +114,7 @@ def tree_closest(root: BinaryNode, key: int) -> BinaryNode:
     min_node = y
     for node in to_compare:
         if abs(node.value - key) < min_distance:
-            min_distance = abs(nodevalue - key)
+            min_distance = abs(node.value - key)
             min_node = node
     return min_node
 

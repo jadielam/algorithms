@@ -1,3 +1,5 @@
+from insertionsort import insertion_sort
+
 def merge(a: list, b: list) -> list:
     '''
     Given two sorted lists: a and b, it returns a third sorted list

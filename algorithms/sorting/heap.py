@@ -128,7 +128,7 @@ def build_max_heap(A: List[PrioritizedItem]) -> None:
     for i in range(last_non_leaf, -1, -1):
         max_heapify(A, i, len(A))
 
-def heapsort(to_sort: List[PrioritizedItem]):
+def heapsort(A: List[PrioritizedItem]):
     '''
     Sorts in place
     '''
