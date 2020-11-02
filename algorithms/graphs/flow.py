@@ -145,8 +145,104 @@ def edmonds_karp(G: Dict[Hashable, List[Hashable]],
     Gr, edge_type, cr = compute_residual(G, c, f)
     
     p = get_shortest_path(Gr, s, t)
+    if p is None:
+        return None
     while p is not None:
         augment(f, p, edge_type, cr)
         Gr, edge_type, cr = compute_residual(G, c, f)
         p = get_shortest_path(Gr, s, t)
     return f
+
+def circulation_with_demands_and_lower_bounds(
+    G: Dict[Hashable, List[Hashable]],
+    c: Dict[Tuple[Hashable, Hashable], float],
+    lb: Dict[Tuple[Hashable, Hashable], float],
+    d: Dict[Hashable, float]
+) -> Dict[Tuple[Hashable, Hashable], float]:
+    '''
+    This function reduces the problem of demands with lower bounds 
+    to the problem of maxflow min cut.
+
+    - First, for each node define Lv to be the difference of flow coming
+    in vs flow going out. dv must be >= L(v) for flow to satisfy requirements
+    - The algorithm begins by sending a flow that satisfy the lower bounds
+    on each node. Now, this original flow might not satisfy the demand constraints, 
+    hence what you do is set the new demand constraints to be: d(v) - L(v)
+    
+    THe reduction:
+    - Set c'(e) = c(e) - lb(e)
+    - Compute L(v) = sum(lb(e into v)) - sum(lb(e out of v))
+    - Compute d'(v) = d(v) - L(v)
+    - Create supersink with edges of capacity d'(v) for each v with d'(v) > 0
+    - Create supersource with edges of capacity -d'(v) for each v with d'(v) < 0
+
+    Pass the reduced structures to the normal edmonds_karp algorithm
+
+
+    - Arguments:
+        - G: Graph of nodes and edges as adjacency list
+        - c: Dictionary of capacities of edges
+        - lb: Dictionary of lower bounds of edges
+        - d: Dictionary of demands of nodes.
+    
+    - Returns:
+        - flow: The flow to be satisfied
+    '''
+    #1. Computing c'(e)
+    c_new = {}
+    for node_pair, capacity in c.items():
+        lower_bound = lb[node_pair]
+        new_capacity = capacity - lower_bound
+        c_new[node_pair] = new_capacity
+    
+    #2. Computing L(v)
+    L_into_v = {}
+    L_outof_v = {}
+    L = {}
+    for u, adj in G.items():
+        if not u in L_outof_v:
+            L_outof_v[u] = 0
+        if not u in L_into_v:
+            L_into_v[u] = 0
+        for v in adj:
+            if not v in L_into_v:
+                L_into_v[v] = 0
+            if not v in L_outof_v:
+                L_outof_v[v] = 0
+            L_into_v[v] += lb[u, v]
+            L_outof_v[u] += lb[u, v]            
+    for v, sum_into in L_into_v.items():
+        sum_outof = L_outof_v[v]
+        L[v] = sum_into - sum_outof
+    
+    #3. Compute new demands requirements
+    d_new = {}
+    for v, dv in d.items():
+        d_new[v] = dv - L[v]
+    
+    #4. Create supersink with edges that have d_new[v] > 0
+    #5. Create supersource with edges that have d_new[v] < 0
+    supersource = max(G.keys()) + 1
+    supersink = supersource + 1
+    G[supersource] = []
+    for v, dv in d_new.items():
+        if dv > 0:
+            if not v in G:
+                G[v] = [supersink]
+            else:
+                G[v].append(supersink)
+            c_new[v, supersink] = dv
+        elif dv < 0:
+            G[supersource].append(v)
+            c_new[supersource, v] = -dv
+
+    #6. Pass new graph to algorithm
+    maxflow = edmonds_karp(G, c_new, supersource, supersink)
+    if maxflow is not None:
+        flow = {k:v for k, v in maxflow.items()}
+        for node_pair, lb_node in lb.items():
+            flow[node_pair] += lb_node
+        return flow
+    else:
+        return maxflow
+    
