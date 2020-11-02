@@ -2,7 +2,7 @@ from typing import Dict, List, Hashable, Tuple
 
 def compute_residual(G: Dict[Hashable, List[Hashable]],
                     c: Dict[Tuple[Hashable, Hashable], float],
-                    f: Dict[Tuple[Hashable, Hashabe], float]):
+                    f: Dict[Tuple[Hashable, Hashable], float]):
     '''
     For each edge (u, v) in G:
     1. if f[u, v] < c[u, v], create forward edge (u, v) with
@@ -24,7 +24,7 @@ def compute_residual(G: Dict[Hashable, List[Hashable]],
     edge_type = {}
     cr = {}
 
-    for u, adj in enumerate(G):
+    for u, adj in G.items():
         for v in adj:
             if f[u, v] < c[u, v]:
                 if u not in Gr:
@@ -37,7 +37,7 @@ def compute_residual(G: Dict[Hashable, List[Hashable]],
                     Gr[v] = []
                 Gr[v].append(u)
                 edge_type[v, u] = 'backward'
-                c[v, u] = f[u, v]
+                cr[v, u] = f[u, v]
 
     return Gr, edge_type, cr
 
@@ -92,13 +92,15 @@ def augment(f: Dict[Tuple[Hashable, Hashable], float],
     '''
     #1. Find bottleneck value
     bottleneck_value = float('inf')
-    for idx, v in enumerate(p[1:]):
+    for idx in range(1, len(p)):
+        v = p[idx]
         u = p[idx - 1]
         c_edge = cr[u, v]
         if c_edge < bottleneck_value:
             bottleneck_value = c_edge
     
-    for idx, v in enumerate(p[1:]):
+    for idx in range(1, len(p)):
+        v = p[idx]
         u = p[idx - 1]
         edge_type = edge_type_d[u, v]
         if edge_type == 'forward':
@@ -135,16 +137,16 @@ def edmonds_karp(G: Dict[Hashable, List[Hashable]],
 
     #1. Create f and set it to zero
     f: Dict[Tuple[Hashable, Hashable], float] = {}
-    for u, adj in enumerate(G):
+    for u, adj in G.items():
         for v in adj:
             f[u, v] = 0
     
     #2. Compute residual graph Gf
     Gr, edge_type, cr = compute_residual(G, c, f)
-
+    
     p = get_shortest_path(Gr, s, t)
     while p is not None:
-        augment(f, p)
+        augment(f, p, edge_type, cr)
         Gr, edge_type, cr = compute_residual(G, c, f)
         p = get_shortest_path(Gr, s, t)
     return f
