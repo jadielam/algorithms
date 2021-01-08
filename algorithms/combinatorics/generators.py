@@ -34,7 +34,7 @@ def combinations_from_product(l: list, k: int):
     k elements from the list. k must be less than or equal to the length of
     the list.
     If n is the length of the list, the number of possible permutations is
-    equal to n!/((n-k)!n!)
+    equal to n!/((n-k)!k!)
     '''
     indexes = list(range(len(l)))
     indexes_products = product(indexes, k)
@@ -54,7 +54,7 @@ def combinations_from_permutations(l: list, k: int):
     k elements from the list. k must be less than or equal to the length of
     the list.
     If n is the length of the list, the number of possible permutations is
-    equal to n!/((n-k)!n!)
+    equal to n!/((n-k)!k!)
     '''
     n = len(l)
     to_return = []
@@ -89,6 +89,7 @@ def permutations(iterable, r = None):
     if r > n:
         return
     indices = list(range(n))
+    # cycles[i] will contain the index j that will be swapped with it.
     cycles = list(range(n, n-r, -1))
     to_return = []
     to_return.append(tuple(pool[i] for i in indices[:r]))
@@ -98,6 +99,9 @@ def permutations(iterable, r = None):
             if cycles[i] == 0:
                 # Send number to the back of the line
                 indices[i:] = indices[i+1:] + indices[i:i+1]
+                 # At this moment indices[i + 1:] contain an ordered sequence of
+                # all the numbers not in indices[:i + 1]
+
                 # Restart count again
                 cycles[i] = n - i
             else:
@@ -124,14 +128,16 @@ def combinations(l: list, k: int):
     to_return = []
     to_return.append(tuple(pool[i] for i in indices))
     while True:
+        # This for-loop guarantees that the function finishes when
+        # the entries in indices are equal to [n - k, n - k + 1, ..., n]
+        # The for-loop also serves the purpose of slow-incrementing the i
+        # that will be used for operation indices[i] += 1
         for i in reversed(range(k)):
             if indices[i] != i + n - k:
                 break
         else:
             return to_return
         indices[i] += 1
-        # A guarantee that we don't repeat elements
-        # Do we need it?
         for j in range(i + 1, k):
             indices[j] = indices[j - 1] + 1
         to_return.append(tuple(pool[i] for i in indices))
@@ -153,6 +159,8 @@ def combinations_with_replacement(l: list, k: int):
     to_return = []
     to_return.append(tuple(pool[i] for i in indices))
     while True:
+        # This for-loop guarantees that the function finishes when
+        # the entries in indices are equal to [n - 1, n - 1, ..., n - 1]
         for i in reversed(range(k)):
             if indices[i] != n - 1:
                 break

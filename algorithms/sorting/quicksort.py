@@ -2,7 +2,7 @@ import random
 
 def randomized_partition(a: list, p, r) -> int:
     '''
-    Given list `a` and indexes `p` and `r` (both inclusive), shuffles elements in ait returns index
+    Given list `a` and indexes `p` and `r` (both inclusive), shuffles elements in a. it returns index
     `q` such that all elements a[:q] are less than or equal to q and all elements a[q+1:] are greater
     than `q`.
     
@@ -37,7 +37,8 @@ def randomized_partition(a: list, p, r) -> int:
     
 def quick_sort(a: list, i: int, j: int):
     '''
-    Given list `a`, it sorts it in place in a stable manner.
+    Given list `a`, it sorts it in place. Fast implementations of it, and this one
+    in particular are not stable. The random picking of q makes it unstable.
     It runs in average case nlog(n), but it can have a worst
     case performance of n^2. 
     
