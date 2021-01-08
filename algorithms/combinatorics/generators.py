@@ -42,9 +42,7 @@ def combinations_from_product(l: list, k: int):
     combinations = {tuple(sorted(p)) for p in to_keep}
     to_return = []
     for entry in combinations:
-        c_entry = []
-        for index in entry:
-            c_entry.append(l[index])
+        c_entry = [l[index] for index in entry]
         to_return.append(c_entry)
     return to_return
 
@@ -60,7 +58,8 @@ def combinations_from_permutations(l: list, k: int):
     to_return = []
     for indices in permutations(list(range(n)), k):
         if sorted(indices) == list(indices):
-            to_return.append(indices)
+            c_entry = [l[index] for index in indices]
+            to_return.append(c_entry)
     return to_return
 
 def combinations_with_replacement_from_product(l: list, k: int):
@@ -74,7 +73,7 @@ def combinations_with_replacement_from_product(l: list, k: int):
     to_return = []
     for indices in product(list(range(n)), k):
         if sorted(indices) == list(indices):
-            to_return.append(indices)
+            to_return.append([l[index] for index in indices])
     return to_return
 
 def permutations(iterable, r = None):
