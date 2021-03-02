@@ -89,7 +89,7 @@ def permutations(iterable, r = None):
         return
     indices = list(range(n))
     # cycles[i] will contain the index j that will be swapped with it.
-    cycles = list(range(n, n-r, -1))
+    cycles = list(range(n, n - r, -1))
     to_return = []
     to_return.append(tuple(pool[i] for i in indices[:r]))
     while n:

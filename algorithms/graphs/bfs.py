@@ -18,7 +18,7 @@ def bfs_forest(adj: Dict[Any, List[Any]]) -> List[Tuple[Any, Dict[Hashable, Hash
             connected_components_data.append((node, parents, distance))
     return connected_components_data
 
-def bfs_connected(adj: Dict[Any, List[Hashable]], s: Any, visited: Set[Hashable]) -> Tuple[Dict[Hashable, Hashable], Dict[Hashable, int]]:
+def bfs_connected(adj: Dict[Any, List[Hashable]], s: Any, visited: Set[Hashable] = set()) -> Tuple[Dict[Hashable, Hashable], Dict[Hashable, int]]:
     '''
     - Arguments:
         - adj: Adjacency list of nodes
