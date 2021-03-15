@@ -64,8 +64,8 @@ def combinations_from_permutations(l: list, k: int):
 
 def combinations_with_replacement_from_product(l: list, k: int):
     '''
-    Given a list l of elements, returns all possible combinations of r elements
-    from the list. r must be less than or equal to the length of the list.
+    Given a list l of elements, returns all possible combinations of k elements
+    from the list. k must be less than or equal to the length of the list.
     If n is the length of the list, the number of possible combinatinos with replacement is
     equal to (n + k - 1)!/(k!(n + k - 1 - k)!)
     '''

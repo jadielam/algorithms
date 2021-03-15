@@ -15,9 +15,7 @@ def randomized_partition(a: list, p, r) -> int:
     '''
     #1. Swap last element of array with partition
     q = random.randint(p, r)
-    temp = a[r]
-    a[r] = a[q]
-    a[q] = temp
+    a[r], a[q] = a[q], a[r]
     
     #2. Do the partition algorithm
     i = p - 1

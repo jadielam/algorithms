@@ -134,7 +134,7 @@ def heapsort(A: List[PrioritizedItem]):
     '''
     build_max_heap(A)
     heap_length = len(A)
-    for i in range(len(A)):
+    for _ in range(len(A)):
         temp = A[heap_length - 1]
         A[heap_length - 1] = A[0]
         A[0] = temp

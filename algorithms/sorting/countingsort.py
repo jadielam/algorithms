@@ -28,3 +28,26 @@ def counting_sort(A: List[int]) -> List[int]:
 
     return B
 
+
+def split_to_digits(A: List[int]):
+    splitted_list = []
+    for a in A:
+        number_digits = []
+        t = a
+        if t == 0:
+            number_digits.append(0)
+        else:
+            while t > 0:
+                div, rem = divmod(t, 10)
+                number_digits.append(rem)
+                t = div
+        splitted_list.append(number_digits)
+    return splitted_list
+
+def radix_sort(A: List[int]) -> List[int]:
+    splitted_list = split_to_digits(A)
+    max_nb_digits = max([len(a) for a in splitted_list])
+    
+    # TODO: Continue working here.
+    for i in range(max_nb_digits):
+        pass
