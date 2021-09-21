@@ -56,10 +56,11 @@ def combinations_from_permutations(l: list, k: int):
     '''
     n = len(l)
     to_return = []
-    for indices in permutations(list(range(n)), k):
-        if sorted(indices) == list(indices):
-            c_entry = [l[index] for index in indices]
-            to_return.append(c_entry)
+    indices = permutations(list(range(n)), k)
+    indices = {tuple(sorted(index_list)) for index_list in indices}
+    for index_list in indices:
+        c_entry = [l[index] for index in index_list]
+        to_return.append(c_entry)
     return to_return
 
 def combinations_with_replacement_from_product(l: list, k: int):
