@@ -2,7 +2,8 @@ def binary_search(a: list, i: int, j: int, n: int):
     '''
     Searches for number n in array a[i:j].
     We assume that array a is sorted.
-    Returns None if the element is not found.
+    Returns -1 if the element is not found,
+    otherwise returns the index of the element
 
     - Arguments:
         - a: list of entries
@@ -13,10 +14,10 @@ def binary_search(a: list, i: int, j: int, n: int):
     while j > i:
         m = i + (j - i) // 2
         if a[m] == n:
-            return n
+            return m
         elif n > a[m]:
             i = m + 1
         else:
             j = m
-    return None
+    return -1
     
