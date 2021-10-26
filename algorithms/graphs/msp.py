@@ -32,6 +32,9 @@ def prim(adj: Dict[Hashable, List[Hashable]],
         w: Dict[Tuple[Hashable], float],
         r: Hashable) -> List[Tuple[Hashable, Hashable]]:
     '''
+    TODO: Fix this algorithm to use heapq instead of custom
+    implementation
+    
     Finds a minimum spaning tree in graph using Prim's algorithm.
     Tree is rooted at r
 
