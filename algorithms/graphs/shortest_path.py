@@ -114,7 +114,7 @@ def dijkstra(adj: Dict[Hashable, List[Hashable]],
     Q = [(0, s)]
     
     while Q:
-        u = heapq.heappop(Q)
+        t, u = heapq.heappop(Q)
         visited.add(u)
         for v in adj[u]:
             if v not in visited:
@@ -122,5 +122,5 @@ def dijkstra(adj: Dict[Hashable, List[Hashable]],
                 if d[v] > d[u] + w[(u, v)]:
                     d[v] = d[u] + w[(u, v)]
                     parent[v] = u
-                    heapq.heappush((d[v], v))
+                    heapq.heappush(Q, (d[v], v))
     return d, parent
