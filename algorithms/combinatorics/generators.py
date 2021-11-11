@@ -69,6 +69,7 @@ def combinations_with_replacement_from_product(l: list, k: int):
     from the list. k must be less than or equal to the length of the list.
     If n is the length of the list, the number of possible combinatinos with replacement is
     equal to (n + k - 1)!/(k!(n + k - 1 - k)!)
+    https://www.mathsisfun.com/combinatorics/combinations-permutations.html
     '''
     n = len(l)
     to_return = []
@@ -141,7 +142,6 @@ def combinations(l: list, k: int):
         for j in range(i + 1, k):
             indices[j] = indices[j - 1] + 1
         to_return.append(tuple(pool[i] for i in indices))
-    return to_return
 
 def combinations_with_replacement(l: list, k: int):
     '''

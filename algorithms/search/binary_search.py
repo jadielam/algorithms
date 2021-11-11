@@ -19,5 +19,10 @@ def binary_search(a: list, i: int, j: int, n: int):
             i = m + 1
         else:
             j = m
-    return -1
+    
+    m = i + (j - i) // 2
+    if a[m] == n:
+        return m
+    else:
+        return -1
     
