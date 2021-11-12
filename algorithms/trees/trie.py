@@ -1,4 +1,5 @@
 from typing import Dict, List
+from collections import deque
 
 class TrieNode:
     '''
@@ -55,9 +56,9 @@ def prefix_search(trie_node: TrieNode, prefix: str) -> List[str]:
         return to_return
     
     # Do BFS on nodes, appending words as I find them as terminals
-    queue = [final_node]
+    queue = deque([final_node])
     while len(queue) > 0:
-        node = queue.pop(0)
+        node = queue.popleft()
         if node.word is not None:
             to_return.append(node.word)
         for child_node in node.children.values():
