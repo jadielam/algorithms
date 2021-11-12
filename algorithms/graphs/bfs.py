@@ -1,4 +1,5 @@
 from typing import Dict, List, Any, Tuple, Set, Hashable
+from collections import deque
 
 def bfs_forest(adj: Dict[Any, List[Any]]) -> List[Tuple[Any, Dict[Hashable, Hashable], Dict[Hashable, int]]]:
     '''
@@ -29,7 +30,7 @@ def bfs_connected(adj: Dict[Any, List[Hashable]], s: Any, visited: Set[Hashable]
         - parents: Dict[Hashable, Hashable]
         - distance: Dict[Hashable, int]
     '''
-    queue = [s]
+    queue = deque([s])
     visited.add(s)
     parents = {
         s: None
@@ -39,7 +40,7 @@ def bfs_connected(adj: Dict[Any, List[Hashable]], s: Any, visited: Set[Hashable]
     }
 
     while len(queue) > 0:
-        node = queue.pop(0)
+        node = queue.popleft()
         if node in adj:
             for child in adj[node]:
                 if not child in visited:
