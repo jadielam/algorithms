@@ -63,9 +63,9 @@ def bellman_ford(adj: Dict[Hashable, List[Hashable]],
     for u in adj.keys():
         for v in adj[u]:
             if d[v] > d[u] + w[(u, v)]:
-                return False, {}
+                return False, d, parent
     
-    return True, parent
+    return True, d, parent
 
 def dag_shortest_path(adj: Dict[Hashable, List[Hashable]], 
                 w: Dict[Tuple[Hashable], float],
