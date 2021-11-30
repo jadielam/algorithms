@@ -37,3 +37,5 @@ def gradient_descent(w: np.ndarray,
         
         iterations += 1
         w = new_w
+    
+    return w
