@@ -113,8 +113,11 @@ def dijkstra(adj: Dict[Hashable, List[Hashable]],
     visited = set()
     Q = [(0, s)]
     
-    while Q:
-        t, u = heapq.heappop(Q)
+    while Q: 
+        t, u = heapq.heappop(Q) # The heapq.heappop happens more times than needed, because a node
+                                # can potentially be added multiple times to the queue if its d[v]
+                                # keeps improving. One way of improving on this is to run this algorithm
+                                # by the number of entries in the adjacency list instead.
         visited.add(u)
         for v in adj[u]:
             if v not in visited:
