@@ -3,7 +3,7 @@ import random
 def randomized_partition(a: list, p, r) -> int:
     '''
     Given list `a` and indexes `p` and `r` (both inclusive), shuffles elements in a. it returns index
-    `q` such that all elements a[:q] are less than or equal to q and all elements a[q+1:] are greater
+    `q` such that all elements a[:q] are less than or equal to q and all elements a[q:] are greater
     than `q`.
     
     - Arguments:
@@ -18,20 +18,14 @@ def randomized_partition(a: list, p, r) -> int:
     a[r], a[q] = a[q], a[r]
     
     #2. Do the partition algorithm
-    i = p - 1
-    j = p
-    while j < r:
+    i = p # next location to insert a value less than or equal to a[r]
+    for j in range(p, r):
         if a[j] <= a[r]:
+            a[i], a[j] = a[j], a[i]
             i += 1
-            temp = a[i]
-            a[i] = a[j]
-            a[j] = temp
-        j += 1
     
-    temp = a[i + 1]
-    a[i + 1] = a[r]
-    a[r] = temp
-    return i + 1
+    a[i], a[r] = a[r], a[i]
+    return i
     
 def quick_sort(a: list, i: int, j: int):
     '''
