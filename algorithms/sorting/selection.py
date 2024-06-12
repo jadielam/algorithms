@@ -2,6 +2,13 @@ from .quicksort import randomized_partition
 
 
 def select_k(a, p, r, i):
+    """
+    Arguments:
+    - a: array
+    - p: starting index inclusive
+    - r: ending index inclusive
+    - i: index to select, 1-indexed.
+    """
     if i > len(a):
         raise ValueError("Index i is greater than the length of the array")
     if i <= 0:
