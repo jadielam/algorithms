@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "algorithms"
+version = "0.1.0"
+description = "Practice algorithms for coding interviews"
+authors = ["Jadiel de Armas <jadielam@gmail.com>"]
+readme = "algorithms.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

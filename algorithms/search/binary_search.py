@@ -11,18 +11,15 @@ def binary_search(a: list, i: int, j: int, n: int):
         - j: ending point of search (exclusive)
         - n: number to be searched
     '''
-    while j > i:
-        m = i + (j - i) // 2
-        if a[m] == n:
-            return m
-        elif n > a[m]:
-            i = m + 1
+    lo = i
+    hi = j - 1
+    while lo <= hi:
+        mid = lo + (hi - lo) // 2
+        if a[mid] == n:
+            return mid
+        elif a[mid] < n:
+            lo = mid + 1
         else:
-            j = m
-    
-    m = i + (j - i) // 2
-    if a[m] == n:
-        return m
-    else:
-        return -1
+            hi = mid - 1
+    return -1
     
