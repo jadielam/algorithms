@@ -96,6 +96,8 @@ def dfs_visit(u: Hashable, adj, color, parent, discovery_time, finish_time, cycl
             parent[v] = u
             dfs_visit(v, adj, color, parent, discovery_time, finish_time, cycles, time)
         elif color[v] == Color.GRAY:
+            # TODO: Remove the insert(0, v) operation from the cycle
+            # list. It is not efficient. We can use a deque instead
             cycle = [v]
             current_node = u
             while current_node != v:
