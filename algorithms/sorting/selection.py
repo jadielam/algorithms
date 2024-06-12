@@ -1,18 +1,17 @@
-from quicksort import randomized_partition
+from .quicksort import randomized_partition
+
 
 def select_k(a, p, r, i):
-    '''
-    Returns the ith smallest element in array a[p...r]
-    It finds the element in average linear time.
-    Indexes `p` and `r` are inclusive.
-    '''
-    if p == r:
-        return a[p]
+    if i > len(a):
+        raise ValueError("Index i is greater than the length of the array")
+    if i <= 0:
+        raise ValueError("Index i must be greater than 0")
+    
     q = randomized_partition(a, p, r)
-    k = q - p + 1
-    if i == k:
+    if q == i - 1:
         return a[q]
-    elif i < k:
-        return select_k(a, p, q - 1, i)
+    elif q < i - 1:
+        return select_k(a, q + 1, r, i)
     else:
-        return select_k(a, q + 1, r, i - k)
+        return select_k(a, p, q - 1, i)
+    
