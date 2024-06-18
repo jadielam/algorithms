@@ -88,7 +88,7 @@ def dag_shortest_path(adj: Dict[Hashable, List[Hashable]],
     for u, _ in sorted_entries:
         for v in adj[u]:
             relax(u, v, d, w, parent)
-    return parent
+    return d, parent
 
 def dijkstra(adj: Dict[Hashable, List[Hashable]], 
                 w: Dict[Tuple[Hashable], float],
@@ -117,7 +117,11 @@ def dijkstra(adj: Dict[Hashable, List[Hashable]],
         t, u = heapq.heappop(Q) # The heapq.heappop happens more times than needed, because a node
                                 # can potentially be added multiple times to the queue if its d[v]
                                 # keeps improving. One way of improving on this is to run this algorithm
-                                # by the number of entries in the adjacency list instead.
+                                # by the number of entries in the adjacency list instead. But this
+                                # is only possible if the graph is connected, otherwise, it is going
+                                # to start copies of the nodes reachable from the source node before
+                                # spitting the nodes with infinite distance, which will be at the
+                                # end of the queue.
         visited.add(u)
         for v in adj[u]:
             if v not in visited:
