@@ -9,6 +9,7 @@ def product(pool: list, k: int):
         to_return = [a + [b] for a in to_return for b in pool]
     return to_return
 
+
 def permutations_from_product(l: list, k: int):
     '''
     Given a list l of elements, returns all possible permutations of the list
@@ -112,6 +113,24 @@ def permutations(iterable, r = None):
                 break
         else:
             return to_return
+    
+def permutations_recursive(l: list, curr: list, k: int, to_return: list):
+    """
+    This implementation is much simpler than the non recursive implementation.
+
+    Arguments:
+    - l: the list of objects to permute.
+    - curr: The current forming prefix of the permutation
+    - k: the length of the permutations in the output. 
+        k must be less than or equal to the length of the list.
+    - to_return: the list that will contain all the permutations.
+    """
+    if len(curr) == k:
+        to_return.append(curr)
+        return
+    for i in range(len(l)):
+        permutations_recursive(l[:i] + l[i + 1:], curr + [l[i]], k, to_return)
+
 
 def combinations(l: list, k: int):
     '''
@@ -142,6 +161,13 @@ def combinations(l: list, k: int):
         for j in range(i + 1, k):
             indices[j] = indices[j - 1] + 1
         to_return.append(tuple(pool[i] for i in indices))
+
+def combinations_recursive(l: list, curr: list, k: int, to_return: list):
+    if len(curr) == k:
+        to_return.append(curr)
+        return
+    for i in range(len(l)):
+        combinations_recursive(l[i + 1:], curr + [l[i]], k, to_return)
 
 def combinations_with_replacement(l: list, k: int):
     '''
