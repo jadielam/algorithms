@@ -1,12 +1,12 @@
-from typing import Iterator, Hashable, List
+from typing import Iterator, Hashable, List, Optional
 
 class BinaryNode:
     def __init__(self, value, data = None):
         self.value = value
         self.data = data
-        self.parent : BinaryNode = None
-        self.left : BinaryNode = None
-        self.right : BinaryNode = None
+        self.parent : Optional[BinaryNode]= None
+        self.left : Optional[BinaryNode] = None
+        self.right : Optional[BinaryNode] = None
 
 def inorder_tree_walk(root: BinaryNode) -> Iterator:
     if root is not None:
@@ -102,7 +102,7 @@ def tree_predecessor(x: BinaryNode) -> BinaryNode:
 
 def tree_closest(root: BinaryNode, key: int) -> BinaryNode:
     '''
-    Returns node in tree with value closest to a
+    Returns node in tree with value closest to key
     '''
     y = tree_search_notnone(root, key)
     if y.value == key:
@@ -118,6 +118,31 @@ def tree_closest(root: BinaryNode, key: int) -> BinaryNode:
             min_node = node
     return min_node
 
+def tree_closest_easier(root: BinaryNode, key: int) -> BinaryNode:
+    """
+    Returns the node in the tree with the value closest to key
+    """
+    closest_val_diff = float('inf')
+    closest_node = None
+    c_node = root
+    while c_node is not None:
+        if abs(c_node.value - key) < closest_val_diff:
+            closest_val_diff = abs(c_node.value - key)
+            closest_node = root
+        if c_node.value < key:
+            c_node = c_node.right
+        elif c_node.value > key:
+            c_node = c_node.left
+        else:
+            # No duplicates can exist in a binary search tree
+            # so returning the first one is fine.
+            return c_node
+
+    # If there are multiple closest nodes, here we are returning the
+    # first one that is minimum. We can modify the first if statement
+    # logic to return multiple ones if needed.
+    return closest_node
+
 def lowest_common_ancestor(x: BinaryNode, y: BinaryNode) -> BinaryNode:
     '''
     Returns lowerst common ancestor node. Assumes x and y are not None
@@ -127,10 +152,11 @@ def lowest_common_ancestor(x: BinaryNode, y: BinaryNode) -> BinaryNode:
         seen.add(x.value)
         x = x.parent
     
-    while y is not None:
-        if y.value in seen:
-            return y
-        y = y.parent
+    c_node = y
+    while c_node is not None:
+        if c_node.value in seen:
+            return c_node
+        c_node = c_node.parent
     
     
 def range_query(root: BinaryNode, low: int, high: int) -> List[int]:
@@ -167,6 +193,24 @@ def range_query(root: BinaryNode, low: int, high: int) -> List[int]:
             if node.right is not None and node.value <= high:
                 stack.append(node.right)
     
+    return to_return
+
+def range_query_easier(root: BinaryNode, low: int, high: int) -> List[int]:
+    """
+    Returns as a list the value of all the nodes that fall within the range
+    [low, high]
+    """
+    def range_query_recursive(root: BinaryNode, low: int, high: int, to_return: List[int]):
+        if root is not None:
+            if root.val >= low and root.val <= high:
+                to_return.append(root.val)
+            if not root.val >= high:
+                range_query_recursive(root.right, low, high, to_return)
+            if not root.val <= low:
+                range_query_recursive(root.left, low, high, to_return)
+    
+    to_return = []
+    range_query_recursive(root, low, high, to_return)
     return to_return
 
 def tree_insert(root: BinaryNode, z: BinaryNode) -> BinaryNode:

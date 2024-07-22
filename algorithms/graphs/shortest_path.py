@@ -51,6 +51,7 @@ def bellman_ford(adj: Dict[Hashable, List[Hashable]],
     - Returns:
         - result: bool. If graph contains valid shortest paths (no negative cycle
         in graph), returns True, otherwise returns False
+        - d: The distance dict of each node.
         - parent: Dictionary that keeps track of what node is parent
         of what node.
     '''
