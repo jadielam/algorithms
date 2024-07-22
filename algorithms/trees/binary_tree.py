@@ -69,16 +69,19 @@ def tree_maximum(root: BinaryNode) -> BinaryNode:
         root = root.right
     return root
 
-def tree_successor(x: BinaryNode) -> BinaryNode:
+def tree_successor(x: BinaryNode) -> Optional[BinaryNode]:
     '''
-    x node cannot be None
+    x node cannot be None, but x can potentially have no
+    sucessor (if x is the largest node in the tree), in which case
+    we return None.
     '''
     # If node has right node, return minimum value of tree rooted in right node
     if x.right is not None:
         return tree_minimum(x.right)
     
     # Else, return the lowest ancestor of x that has a left child that is also
-    # an ancestor of x. (remember that a node is an ancestor of itself)
+    # an ancestor of x. (remember that a node is an ancestor of itself).
+    # In other words, return the node for which x is its predecessor.
     y = x.parent
     while y is not None and x is y.right:
         x = y
@@ -87,13 +90,16 @@ def tree_successor(x: BinaryNode) -> BinaryNode:
 
 def tree_predecessor(x: BinaryNode) -> BinaryNode:
     '''
-    x cannot be None
+    x cannot be None, but x can potentially have no 
+    sucessor (if x is the smallest node in the tree), in which case
+    we return None.
     '''
     #1. If node has left node, return maximum value of tree rooted in right node
     if x.left is not None:
         return tree_maximum(x.left)
     
     #2. Else return lowest ancestor of x that has a right child who is also an ancestor of x
+    # In other words, return the node for which x is its ancestor.
     y = x.parent
     while y is not None and x is y.left:
         x = y
