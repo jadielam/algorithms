@@ -1,5 +1,3 @@
-from typing import List
-
 def naive_string_matching(t: str, p: str):
     '''
     Finds all valid shifts where pattern p occurs in string s.
@@ -10,9 +8,3 @@ def naive_string_matching(t: str, p: str):
         if t[i:i + len(p)] == p:
             valid_shifts.append(i)
     return valid_shifts
-
-def kmp(t: str, p: str):
-    pass
-
-
-
