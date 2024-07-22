@@ -1,6 +1,6 @@
 import numpy as np
 
-def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+def longestCommonSubsequence(text1: str, text2: str) -> int:
     '''
     Given two strings, returns the length of the longest common subsequence.
     - Example:
