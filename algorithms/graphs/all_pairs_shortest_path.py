@@ -32,6 +32,12 @@ def slow_all_pairs_shortest_path(W : np.ndarray) -> np.ndarray:
 def fast_all_pairs_shortest_path(W: np.ndarray) -> np.ndarray:
     '''
     The runtime of this algorithm is n^3log(n)
+    
+    TODO: I have my suspicions that this does not work. But we need to prove it.
+    The reason why I think it does not work is because is not being careful with 
+    the boundaries, but I need to check that more carefully. Otherwise, the logic
+    seems sound.
+    
     - Arguments: 
         - W: Weights adjacency matrix of shape (n, n) where n is the number of nodes in the graph.
             W[i, i] = 0
