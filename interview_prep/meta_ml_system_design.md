@@ -1,0 +1,51 @@
+- ML System Design interview chapters:
+    - (4) C1: Introduction and Overview
+    - (11) C2: Visual Search System
+    - (10) C3: Google Street View Blurring System
+    - (7) C4: YouTube Video Search
+    - (8) C5: Harmful Content Detection
+    - (6) C6: Video Recommendation System
+    - (5) C7: Event Recommendation System
+    - (1) C8: Ad Click Prediction on Social Platforms
+    - (9) C9: Similar Listings on Vacation Rental Platforms
+    - (2) C10: Personalized News Feed
+    - (3) C11: People You May Know
+
+- System Design Interview 1:
+    - (12) C1: Scale from Zero to Millions of Users
+    - (9) C2: Back of the Envelope Estimation
+    - (7) C3: A Framework for System Design Interview
+    - (8) C4: Design a Rate Limiter
+    - (2) C5: Design Consistent Hashing
+    - (3) C6: Design a Key-Value Store
+    - (7) C7: Design a Unique ID Generator in Distributed Systems
+    - (7) C8: Design a URL shortener
+    - (4) C9: Design a Web Crawler
+    - (1) C10: Design a Notification System
+    - (1) C11: Design a News Feed System
+    - (5) C12: Design a Chat System
+    - (6) C13: Design a Search Autocomplete System
+    - (10) C14: Design YouTube
+    - (11) C15: Design Google Drive
+    - (12) C16: The Learning Continues
+
+- System Design Interview 2:
+    - (3) C1: Proximity Service
+    - (4) C2: Nearby Friends
+    - (5) C3: Google Maps
+    - (1) C4: Distributed Message Queue
+    - (6) C5: Metrics Monitoring and Alerting System
+    - (2) C6: Ad Click Event Aggregation
+    - (10) C7: Hotel Reservation System
+    - (9) C8: Distributed Email Service
+    - (8) C9: S3-Like Object Storage
+    - (11) C10: Real-time Gaming Leaderboard
+    - (7) C11: Payment System
+    - (7) C12: Digital Wallet
+    - (12) C13: Stock Exchange
+
+- Papers:
+    - (1) Transformer paper
+    - (2) FAISS paper
+    - (3) ViT paper
+    - (4) Research on papers relevant or related to ads and other things.
