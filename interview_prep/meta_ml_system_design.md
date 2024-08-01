@@ -1,15 +1,15 @@
 - ML System Design interview chapters:
-    - (4) C1: Introduction and Overview
-    - (11) C2: Visual Search System
-    - (10) C3: Google Street View Blurring System
-    - (7) C4: YouTube Video Search
+    - (4) (DONE) C1: Introduction and Overview
+    - (4) (DONE) C2: Visual Search System
+    - (5) C3: Google Street View Blurring System
+    - (4) C4: YouTube Video Search
     - (8) C5: Harmful Content Detection
-    - (6) C6: Video Recommendation System
+    - (3) C6: Video Recommendation System
     - (5) C7: Event Recommendation System
-    - (1) C8: Ad Click Prediction on Social Platforms
+    - (1) (DONE) C8: Ad Click Prediction on Social Platforms
     - (9) C9: Similar Listings on Vacation Rental Platforms
-    - (2) C10: Personalized News Feed
-    - (3) C11: People You May Know
+    - (2) (DONE) C10: Personalized News Feed
+    - (3) (DONE) C11: People You May Know
 
 - System Design Interview 1:
     - (12) C1: Scale from Zero to Millions of Users
@@ -46,6 +46,30 @@
 
 - Papers:
     - (1) Transformer paper
+    - (2) BERT paper or any other paper on converting a text to an embedding vector.
     - (2) FAISS paper
     - (3) ViT paper
+    - (4) SimCLR paper
     - (4) Research on papers relevant or related to ads and other things.
+    - (3) Contrastive learning paper
+
+- Important topics:
+    - (3) Probability calibration techniques
+        - https://machinelearningmastery.com/calibrated-classification-model-in-scikit-learn/ (this example does not explain how to do it, but is a tutorial on how to use scikit learn code to do it.)
+        - 
+    - (3) Blog entry on techniques for computing different kind of features (batch, streaming, adhoc)
+    - (4) Technique that uses clustering to create datasets (that I read on LinkedIn)
+    - (2) Linear regression definition
+    - (5) xgboost algorithm (https://www.analyticsvidhya.com/blog/2021/09/gradient-boosting-algorithm-a-complete-guide-for-beginners/)
+    - (1) backpropagation algorithm
+    - (2) different deep learning activations and losses
+    - (2) TP, FP, TN, FN, precision, recall, ROC, etc.
+    - (4) Time based dataset splitting (https://www.linkedin.com/pulse/time-based-splitting-determining-train-test-data-come-manraj-chalokia/)
+    - (4) Explore the pross and cons of pointwise, pair-wise and list LTR (Learning to Rank)
+    - (3) Answer the question on why pointwise LTR is used sometimes and embeddings + Nearest neighbor searches is used in other times.
+    - (4) Research number of databases, services needed to support x number of reads, writes, requests per second.
+    - (4) Introduction to GNNs (https://distill.pub/2021/gnn-intro/)
+    - (3) Bias-variance tradeoff
+    - Challenges of training LLMs
+    - RAG systems
+
