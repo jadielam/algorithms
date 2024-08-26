@@ -1,10 +1,10 @@
 - ML System Design interview chapters:
     - (4) (DONE) C1: Introduction and Overview
     - (4) (DONE) C2: Visual Search System
-    - (5) C3: Google Street View Blurring System
-    - (4) C4: YouTube Video Search
-    - (8) C5: Harmful Content Detection
-    - (3) C6: Video Recommendation System
+    - (5) (DONE) C3: Google Street View Blurring System
+    - (4) (DONE) C4: YouTube Video Search
+    - (4) (DONE) C5: Harmful Content Detection
+    - (3) (DONE) C6: Video Recommendation System
     - (5) C7: Event Recommendation System
     - (1) (DONE) C8: Ad Click Prediction on Social Platforms
     - (9) C9: Similar Listings on Vacation Rental Platforms
@@ -45,13 +45,14 @@
     - (12) C13: Stock Exchange
 
 - Papers:
-    - (1) Transformer paper
-    - (2) BERT paper or any other paper on converting a text to an embedding vector.
+    - (1) (DONE) Transformer paper
+    - (2) (DONE) BERT paper or any other paper on converting a text to an embedding vector.
     - (2) FAISS paper
     - (3) ViT paper
     - (4) SimCLR paper
     - (4) Research on papers relevant or related to ads and other things.
     - (3) Contrastive learning paper
+    - (4) User-user vs item-item collaborative filtering: https://www.amazon.science/the-history-of-amazons-recommendation-algorithm
 
 - Important topics:
     - (3) Probability calibration techniques

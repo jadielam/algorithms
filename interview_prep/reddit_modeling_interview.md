@@ -1,3 +1,16 @@
+## The plan of study will be the following:
+1. sample xgboost for regression
+2. sample xgboost for classification
+3. sample xgboost for multi class classification
+4. sample xgboost for multi regression
+5. CNN for image classification
+6. CNN/VIT for extracting embeddings from image
+7. Transformer for text classification
+8. Transformer for extracting embeddings from text
+9. FAISS
+10. Custom Multimodal NN model to tackle problems 1-4
+11. Two tower NN model to learn embeddings.
+
 ## Tutorials and topics to study
 
 1. Pandas tutorial (https://pandas.pydata.org/docs/getting_started/index.html)
@@ -14,6 +27,16 @@
 5.2 See examples for other kind of tasks.
 
 ## Practical studies
+### Example notebooks to look at:
+1. Using xgboost and sklearn pipelines: https://goodboychan.github.io/python/datacamp/machine_learning/2020/07/07/03-Using-XGBoost-in-pipelines.html
+1. https://www.kaggle.com/code/ldfreeman3/a-data-science-framework-to-achieve-99-accuracy#Step-5:-Model-Data
+2. Movie recommendation dataset and notebook: https://www.kaggle.com/code/ibtesama/getting-started-with-a-movie-recommendation-system
+3. Utilizing transformer representations efficienty: https://www.kaggle.com/code/rhtsingh/utilizing-transformer-representations-efficiently
+4. NLP the old way: tf-idf, etc: https://www.kaggle.com/code/faressayah/natural-language-processing-nlp-for-beginners
+5. Check Nvidia merlin for two tower models: https://github.com/NVIDIA-Merlin/models
+6. Pytorch official recommender model example: https://github.com/facebookresearch/dlrm/blob/main/torchrec_dlrm/dlrm_main.py
+7. DLRM paper: https://arxiv.org/abs/1906.00091
+8. Example repo on two towers: https://github.com/gauravchak/two_tower_models/blob/main/src/two_tower_plus_light_ranker.py
 ### Data preparation
 1. Write sample code to visualize and explore features.
 
