@@ -1,3 +1,22 @@
+### Final ML Design plan to study
+DONE 1. ViT paper
+DONE 2. FAISS paper and other blogs.
+3. K-Means, DBSCAN, PCA.
+DONE 4. Feature store blog.
+DONE 5. Loss functions again.
+DONE 6. Backpropagation again.
+DONE 6. Skim through the chapters in the ML Design book.
+DONE 7. Regression and prediction of intervals.
+DONE 8. xgboost basic
+DONE 9. xgboost for time series prediction.
+DONE 10. xgboost for ranking
+10. Data parallelism and model parallelism on pytorch.
+11. Bias variance trade off.
+12. All evaluation metrics again.
+DONE 13. GNNs
+
+
+
 - ML System Design interview chapters:
     - (4) (DONE) C1: Introduction and Overview
     - (4) (DONE) C2: Visual Search System
@@ -73,4 +92,5 @@
     - (3) Bias-variance tradeoff
     - Challenges of training LLMs
     - RAG systems
+    - GNNs (https://docs.dgl.ai/en/0.8.x/tutorials/blitz/3_message_passing.html)
 
