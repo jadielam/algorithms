@@ -3,6 +3,10 @@ done = {125, 128, 138, 162, 173, 236, 283, 394, 415, 468, 498, 636, 670, 708, 88
         1514, 17, 34, 827, 938, 2667, 70, 84, 121, 146, 199, 215, 560, 543, 200, 1650, 1570, 314, 1249, 973, 
         680, 56, 339, 88, 1, 50, 408, 76, 65, 528, 398, 14, 23, 346, 133, 426, 78, 102, 1762, 20,
         647, 525, 273, 42, 38, 986, 31, 15, 825, 658, 13, 3, 921, 270, 235, 48, 1216, 10, 282, 4, 
+        977, 958, 721, 633, 380, 333, 238, 208, 118, 207, 75, 67, 21, 26, 
+        53, 79, 221, 691, 410, 301, 987, 1213, 1122, 1752, 49, 55, 44, 43, 19, 16, 1778, 1443, 25, 
+        57, 58, 72, 62, 73, 80, 82, 231, 253, 234, 219, 210, 209, 206, 169, 153, 139, 140, 127,
+        268, 286, 371, 330, 332, 341, 404, 
         }
 
 candidates = [
@@ -19,6 +23,8 @@ problems_to_comeback = [
     38, # runtime analysis is very tricky.
 
     4, # difficult one
+    90, # subsets ii. Study it while learning the algorithms
+    332, # Similar to the first problem they gave me, just in case I have to go back to it.
 ]
 
 candidates_1 = [
@@ -55,6 +61,6 @@ print("Number of exercises left: ", len(to_do))
 if len(to_do) < 20:
     print('add more candidates')
 else:
-    print("Exercises to do: ", to_do[:20])
+    print("Exercises to do: ", to_do[:23])
 
 print("Number of exercises done: ", len(done))
