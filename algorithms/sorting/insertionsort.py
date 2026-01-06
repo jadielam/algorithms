@@ -4,8 +4,7 @@ def insertion_sort(nums: list) -> list:
     The algorithm is stable.
     '''
     for i in range(len(nums)):
-        # TODO: Line below should be: for j in range(i + 1, len(nums)):
-        for j in range(i, len(nums)):
+        for j in range(i + 1, len(nums)):
             if nums[i] > nums[j]:
                 nums[i], nums[j] = nums[j], nums[i]
     return nums
