@@ -84,8 +84,13 @@ def dag_shortest_path(adj: Dict[Hashable, List[Hashable]],
         - parent: Dictionary that keeps track of what node is parent
         of what node.
     '''
+    # question: does the source node have to be the first node in the topological order?
+    # It seems so to me.
     sorted_entries = topological_sort(adj)
     d, parent = initialize_single_source(adj, s)
+    # The reason why the single loop works is because at any given point in time
+    # any node u that is being processed has already had all its predecessors 
+    # processed, meaning that the d[u] is already optimal.
     for u, _ in sorted_entries:
         for v in adj[u]:
             relax(u, v, d, w, parent)

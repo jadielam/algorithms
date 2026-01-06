@@ -32,7 +32,10 @@ class DisjointSets:
     def union(self, x: Hashable, y: Hashable):
         self.link(self.find_set(x), self.find_set(y))
     
-    def find_set(self, x: Hashable) -> Hashable:    
+    def find_set(self, x: Hashable) -> Hashable: 
+        """
+        Returns the representative of the set containing x
+        """   
         path_to_root = []
         y = x
         while y != self.parent[y]:

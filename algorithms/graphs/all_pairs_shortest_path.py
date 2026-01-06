@@ -3,13 +3,13 @@ import numpy as np
 def extend_shortest_path(L_i: np.ndarray, W: np.ndarray):
     '''
     - Arguments:
-        - L_i (n, n): contains shortest paths of length i
+        - L_i (n, n): contains shortest paths of length at most i
         - W (n, n): The weight matrix, which is multiplied by extend_shortes path procedure
     '''
-    L_i1 = np.zeros(L_i.shape)
+    L_i1 = np.full(L_i.shape, np.inf)
     for i in range(L_i1.shape[0]):
         for j in range(L_i1.shape[1]):
-            L_i1 = np.min(L_i[i,:] + W[:,j])
+            L_i1[i, j] = np.min(L_i[i,:] + W[:,j])
     return L_i1
 
 def slow_all_pairs_shortest_path(W : np.ndarray) -> np.ndarray:
@@ -52,6 +52,3 @@ def fast_all_pairs_shortest_path(W: np.ndarray) -> np.ndarray:
         L_previous = L_2i
         i = 2 * i
     return L_previous
-
-
-    
