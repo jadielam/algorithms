@@ -34,6 +34,8 @@ def kruskal(adj: Dict[Hashable, List[Hashable]],
     sorted_edges = sorted(list(w.items()), key = lambda x: x[1])
     for v in adj.keys():
         dj.make_set(v)
+    
+    # We can improve this loop by stopping when A has V-1 edges.
     for ((u, v), _) in sorted_edges:
         if dj.find_set(u) != dj.find_set(v):
             A.append((u, v))
