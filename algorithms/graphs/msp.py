@@ -9,6 +9,18 @@ def kruskal(adj: Dict[Hashable, List[Hashable]],
     Finds a minimum spaning tree in graph using Kruskal algorithm.
     This implementation runs in O(ElogE + (E + V))
 
+    The idea behind the algorithm is to:
+    1. sort all edges in increasing order of their weight.
+    2. Initialize a disjoint set for all vertices in the graph
+    3. For each edge in sorted order, check if the two vertices
+       belong to different sets. If they do, add the edge to the
+       minimum spanning tree and union the two sets.
+    
+    The algorithm stops when we have V-1 edges in the minimum spanning tree.
+    The correctness of the algorithm relies on the cut property of minimum
+    spanning trees, which states that for any cut in the graph, the minimum
+    weight edge that crosses the cut must be part of the minimum spanning tree.
+
     - Arguments:
         - adj: Graph represented as adjacency list. Assumes that nodes with no
         neighbors are present in the adjacency list.
