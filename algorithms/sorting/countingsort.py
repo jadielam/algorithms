@@ -98,6 +98,13 @@ def counting_sort_for_radix_sort(
         
 
 def radix_sort(A: List[int]) -> List[int]:
+    """
+    THe runtime of radix sort is O(d*(n + k)), where
+    d is the number of digits in the largest number,
+    n is the number of elements in the input list, and
+    k is the range of the digits (in our case k = 10, since
+    we are using base 10).
+    """
     if not A:
         return A
     splitted_list = split_to_digits(A)
@@ -105,6 +112,8 @@ def radix_sort(A: List[int]) -> List[int]:
     input_to_sort = list(zip(A, splitted_list))
 
     for i in range(max_nb_digits):
+        # Essentially, you start sorting from the least significant.
+        # And the stability of counting sort works the rest of the magic!
         input_to_sort = counting_sort_for_radix_sort(input_to_sort, i)
-    return [num for num, _ in input_to_sort]    
+    return [num for num, _ in input_to_sort]
     
