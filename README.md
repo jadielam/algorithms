@@ -4,8 +4,6 @@ Small collection of algorithm implementations (by topic) with matching pytest su
 
 CI status
 
-- Replace OWNER/REPO in the badge URL below with your GitHub owner and repo to show CI status:
-
 [![CI](https://github.com/jadielam/algorithms/actions/workflows/ci.yml/badge.svg)](https://github.com/jadielam/algorithms/actions/workflows/ci.yml)
 
 Quickstart — run tests
@@ -56,6 +54,3 @@ More guidance
 
 - See `.github/copilot-instructions.md` for development conventions and examples.
 
-If you want, I can:
-- Replace the CI badge automatically with the correct `OWNER/REPO` value.
-- Add a dynamic shields.io badge and a matrix for multiple Python versions in CI.
