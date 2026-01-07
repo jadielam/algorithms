@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def editDistance(self, word1: str, word2: str) -> int:
     '''
     Computes the edit distance between two strings

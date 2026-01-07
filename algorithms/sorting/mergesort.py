@@ -1,4 +1,4 @@
-from insertionsort import insertion_sort
+from algorithms.sorting.insertionsort import insertion_sort
 
 def merge(a: list, b: list) -> list:
     '''

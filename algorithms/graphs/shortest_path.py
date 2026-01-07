@@ -1,6 +1,6 @@
 from typing import Hashable, Tuple, Dict, List
 
-from dfs import topological_sort
+from algorithms.graphs.dfs import topological_sort
 import heapq
 
 def relax(u: Hashable, v: Hashable, 
