@@ -6,16 +6,17 @@ CI status
 
 [![CI](https://github.com/jadielam/algorithms/actions/workflows/ci.yml/badge.svg)](https://github.com/jadielam/algorithms/actions/workflows/ci.yml)
 
-Quickstart — run tests
 
-Using Poetry (preferred):
+## Quickstart — run tests
+
+### Using Poetry (preferred)
 
 ```bash
 poetry install
 poetry run pytest -q
 ```
 
-Using an explicit virtualenv (manual):
+### Using an explicit virtualenv (manual)
 
 ```bash
 python -m venv .venv
@@ -26,7 +27,7 @@ python -m pip install pytest
 pytest -q
 ```
 
-Pre-commit (optional)
+## Pre-commit (optional)
 
 Install and enable locally so tests run before each commit:
 
@@ -39,18 +40,18 @@ pip install pre-commit
 pre-commit install
 ```
 
-Repository layout
+## Repository layout
 
 - `algorithms/` — source packages (e.g., `sorting`, `graphs`, `trees`, `string`, `ml`).
 - `tests/algorithms/` — pytest modules mirroring `algorithms/`.
 - `pyproject.toml` — project metadata and dev dependencies (Poetry).
 
-Key conventions
+## Key conventions
 
 - Package imports: use `from algorithms.<topic>.<module> import <symbol>` in tests and examples.
 - Many APIs are index-based or mutate in-place (e.g., `quick_sort(a, 0, len(a)-1)`).
 
-More guidance
+## More guidance
 
 - See `.github/copilot-instructions.md` for development conventions and examples.
 
