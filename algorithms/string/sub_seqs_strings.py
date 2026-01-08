@@ -3,6 +3,10 @@ import numpy as np
 def longestCommonSubsequence(text1: str, text2: str) -> int:
     '''
     Given two strings, returns the length of the longest common subsequence.
+    A subsequence of a string is a new string generated from the original string
+    with some characters (can be none) deleted without changing the relative order
+    of the remaining characters.
+    
     - Example:
         - Input: "abcde" and "ace"
         - Longest common subsequence is "ace"
