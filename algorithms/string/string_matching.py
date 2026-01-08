@@ -14,6 +14,9 @@ def rabin_karp_string_matching(t: str, p: str):
     Finds all valid shifts where pattern p occurs in string s using
     the Rabin-Karp algorithm. If m = len(p) and n = len(t), this runs
     in expected time O(n + m) and worst-case time O(nm)
+
+    NOTE: This implementation was done by an LLM and has not been manually
+    reviewed for correctness yet.
     '''
     d = 256  # Number of characters in the input alphabet
     q = 101  # A prime number
