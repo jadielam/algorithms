@@ -10,9 +10,18 @@ def simplified_regular_expression(t: str, p: str):
     memo = {}
     def dp(i: int, j: int):
         '''
-        Returns True if p[j:] matches t[i:]
+        Returns True if p[j:] matches t[i:].
+        How to analyze the runtime of this function:
+        There are O(len(t) * len(p)) different (i, j) pairs. Each pair is computed only once and stored
+        in memo. Each computation takes O(1) time. Therefore, the total runtime is O(len(t) * len(p))
+
+        If we did not use memoization, the runtime would be exponential because each call to dp
+        can generate up to two additional calls to dp.
         '''
         if not (i, j) in memo:
+            # Notice that we need to check for the pattern end, not for the text end.
+            # The text can end without the pattern ending and the text can still be a match due to the
+            # star operator
             if j == len(p):
                 ans = i == len(t)
             else:
