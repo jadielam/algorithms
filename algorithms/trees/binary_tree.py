@@ -44,6 +44,8 @@ def tree_search_notnone(root: BinaryNode, key: Hashable) -> BinaryNode:
     '''
     Returns the node that has the given key. If no node is found with that key,
     returns the last valid node that the search visited.
+
+    TODO: I am not so sure that this is correct.
     '''
     while root is not None and key != root.value:
         y = root
@@ -205,6 +207,11 @@ def range_query_easier(root: BinaryNode, low: int, high: int) -> List[int]:
     """
     Returns as a list the value of all the nodes that fall within the range
     [low, high]
+
+    NOTE: It seems that this implementation can easily be made non recursive with
+    a stack. The idea would be to push nodes to the stack each time we make a
+    recursive call, and pop them each time we pick an element from the stack to
+    check for its value.
     """
     def range_query_recursive(root: BinaryNode, low: int, high: int, to_return: List[int]):
         if root is not None:
