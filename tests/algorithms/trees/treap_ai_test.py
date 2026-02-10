@@ -4,7 +4,7 @@ Tests cover insertion, deletion, search, traversal, and structural properties.
 """
 
 import pytest
-from algorithms.trees.treap_ai import Treap, TreapNode
+from algorithms.trees.treap import Treap, TreapNode
 
 
 def test_treap_insert_single():
