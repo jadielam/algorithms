@@ -79,11 +79,13 @@ class SegmentTree:
 		l = self.size + left
 		r = self.size + right
 		res = 0
+		
+        # TODO: study this loop carefully to understand how it works
 		while l <= r:
-			if (l & 1) == 1:
+			if (l & 1) == 1: # equivalent to l % 2 == 1
 				res += self.tree[l]
 				l += 1
-			if (r & 1) == 0:
+			if (r & 1) == 0: # equivalent to r % 2 == 0
 				res += self.tree[r]
 				r -= 1
 			l //= 2
