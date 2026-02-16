@@ -19,8 +19,8 @@ class SegmentTree:
 	"""Range-sum segment tree with point updates."""
 
 	def __init__(self, data: Optional[List[int]] = None):
-		self.n = 0
-		self.size = 0
+		self.n = 0  # will be the number of elements in data.
+		self.size = 0   # will be the actual size of the complete tree (next power of two)
 		self.tree: List[int] = []
 		if data:
 			self.build(data)
@@ -34,10 +34,16 @@ class SegmentTree:
 		# next power of two
 		self.size = 1
 		while self.size < self.n:
-			self.size <<= 1
+			self.size <<= 1 # equivalent to self.size *= 2
 
 		# initialize tree with zeros; indices [1..2*size-1]
 		self.tree = [0] * (2 * self.size)
+		# The reason behind the numbers above is the following:
+		# A complete binary tree with 'size' leaves has a total of 2*size - 1 nodes.
+		# That's why we throw in an extra element at index 0 to make indexing easier.
+		# Proof that a complete binary tree with 'size' leaves has 2*size - 1 nodes:
+		# sum from 2^0 to 2^(h-1) = 2^h - 1, where h is the height of the tree.
+		# Since the number of leaves is size = 2^(h-1), summation becomes 2^0 to 2^(h-1) = 2^h - 1 = 2*size - 1. Yes, got it now.
 
 		# set leaves
 		for i in range(self.n):
@@ -51,6 +57,7 @@ class SegmentTree:
 
 	def update(self, idx: int, value: int):
 		"""Point update: set data[idx] = value.
+		The idea is to update the leaf node corresponding to idx, then move up the tree and update all ancestors.
 
 		Raises IndexError if idx is out of range.
 		Time: O(log n)
@@ -67,6 +74,7 @@ class SegmentTree:
 
 	def query(self, left: int, right: int) -> int:
 		"""Range sum query over inclusive interval [left, right].
+		Here left and right are indices in the original data array (0-based).
 
 		Raises IndexError on invalid ranges.
 		Time: O(log n)
